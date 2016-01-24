@@ -6830,25 +6830,11 @@ var Route = ReactRouter.Route;
 var RouteHandler = ReactRouter.RouteHandler;
 
 var Nav = React.createClass({displayName: 'Nav',
-  gotoHome: function() {
-    location.href= "#"
-  },
-
-  gotoApproach: function() {
-    location.href= "#/approach"
-  },
-
-  gotoWork: function() {
-    location.href= "#/work"
-  },
-
-  gotoTeam: function() {
-    location.href= "#/team"
-  },
-
-  gotoVentures: function() {
-    location.href= "#/ventures"
-  },
+  gotoHome: function() { location.href= "#" },
+  gotoApproach: function() { location.href= "#/approach" },
+  gotoWork: function() { location.href= "#/work" },
+  gotoTeam: function() { location.href= "#/team" },
+  gotoVentures: function() { location.href= "#/ventures" },
 
   render: function() {
     return (
@@ -6858,11 +6844,12 @@ var Nav = React.createClass({displayName: 'Nav',
           "Picobit"), 
 
         React.createElement("div", {style: {float:"right",marginTop:80,marginRight:50,fontSize:11,fontWeight:600,color:"#ccc"}}, 
-          React.createElement("span", {style: {display:"inline",marginRight:20,display:"inline",cursor:"pointer"}, onClick: this.gotoWork}, "WORK"), 
-          React.createElement("span", {style: {display:"inline",marginRight:20,display:"inline",cursor:"pointer"}, onClick: this.gotoApproach}, "APPROACH"), 
-          React.createElement("span", {style: {display:"inline",marginRight:20,display:"inline",cursor:"pointer"}, onClick: this.gotoTeam}, "TEAM"), 
-          React.createElement("span", {style: {cursor:"pointer",display:"inline",marginRight:20,cursor:"pointer"}, onClick: this.gotoVentures}, "VENTURES"), 
-          React.createElement("span", {style: {display:"inline",marginRight:20,border:"3px solid #5898f1",color:"#5898f1",padding:5,borderRadius:5}}, "CONTACT")
+          React.createElement("span", {style: {marginRight:20,display:"none",cursor:"pointer"}, onClick: this.gotoWork}, "WORK"), 
+          React.createElement("span", {style: {display:"block",marginRight:20,display:"none",cursor:"pointer"}, onClick: this.gotoApproach}, "APPROACH"), 
+          React.createElement("span", {style: {display:"block",marginRight:20,display:"none",cursor:"pointer"}, onClick: this.gotoTeam}, "TEAM"), 
+          React.createElement("span", {style: {cursor:"pointer",display:"none",marginRight:20,cursor:"pointer"}, onClick: this.gotoVentures}, "VENTURES"), 
+          React.createElement("a", {style: {display:"inline",marginRight:20,border:"3px solid #5898f1",color:"#5898f1",padding:5,borderRadius:5,cursor:"pointer",textDecoration:"none"}, 
+            href: "mailto:someone@example.com"}, "CONTACT")
         )
       )
     )
@@ -6893,10 +6880,33 @@ var Team = React.createClass({displayName: 'Team',
 
 var Work = React.createClass({displayName: 'Work',
   render: function () {
+    style = {
+      boxShadow: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
+      transition: "all 0.2s ease-in-out",
+      textAlign:"center",
+      paddingTop:80,
+      width:200,
+      height:200,
+      display:"block"
+    }
     return (
       React.createElement("div", {className: "container"}, 
         React.createElement(Nav, null), 
-        React.createElement("h3", null, "Work")
+        React.createElement("div", {style: {textAlign:"center"}}, 
+          React.createElement("br", null), 
+          React.createElement("h3", null, "Selected Work"), 
+          React.createElement("br", null), 
+          React.createElement("div", {style: style}, 
+            React.createElement("img", {style: {width:80}, src: "images/sage-logo.png"})
+          ), 
+          React.createElement("div", {style: {width:200,marginTop:20}}, 
+            React.createElement("div", {style: {fontSize:12,fontWeight:800}}, "CASE STUDY #1"), 
+            React.createElement("div", {style: {fontSize:32,fontWeight:200,fontFamily:"proxima-nova"}}, "Sage Care"), 
+            React.createElement("div", {style: {fontSize:14,fontStyle:"italic",fontWeight:400,fontFamily:"garamond"}}, 
+              "From zero to production ready app in app-store in 20 days."
+            )
+          )
+        )
       )
     )
   }
@@ -6920,7 +6930,7 @@ var About = React.createClass({displayName: 'About',
       React.createElement("div", {className: "container"}, 
         React.createElement(Nav, null), 
 
-        React.createElement("div", {className: "row", style: {textAlign:"center",fontSize:32,fontWeight:100}}, 
+        React.createElement("div", {className: "row", style: {textAlign:"center",fontSize:32,fontWeight:100,marginTop:50}}, 
         React.createElement("img", {src: "images/moon.png", style: {height:100,marginTop:100}}), 
         React.createElement("br", null), 
 
@@ -6933,6 +6943,30 @@ var About = React.createClass({displayName: 'About',
             "design and technology."
           )
           )
+        ), 
+
+        React.createElement("div", {style: {display:"none"}}, 
+        React.createElement("hr", {style: {marginTop:100,marginBottom:100,width:300}}), 
+        React.createElement("div", {className: "row", style: {fontSize:32,fontWeight:100}}, 
+          "Build products that matter.", 
+          React.createElement("div", {className: "col-md-offset-2 col-md-8"}, 
+            React.createElement("br", null), 
+            React.createElement("br", null), 
+            React.createElement("br", null), 
+            React.createElement("img", {src: "images/Group.png", style: {width:"100%"}}), 
+            React.createElement("br", null), 
+            React.createElement("br", null)
+          )
+        ), 
+
+        React.createElement("hr", {style: {marginTop:100,marginBottom:100,width:300}}), 
+        React.createElement("div", {className: "row", style: {fontSize:32,fontWeight:100}}, 
+          "Yoyo"
+        )
+        ), 
+        React.createElement("hr", {style: {marginTop:100,marginBottom:60,width:300}}), 
+        React.createElement("div", {style: {textAlign:"center"}}, 
+          React.createElement("img", {src: "images/pic_logo.png", style: {height:53,marginBottom:60}})
         )
       )
     )
@@ -6946,7 +6980,7 @@ var Ventures = React.createClass({displayName: 'Ventures',
         React.createElement(Nav, null), 
 
         React.createElement("div", {className: "row", style: {textAlign:"center",fontSize:32,fontWeight:100}}, 
-          React.createElement("div", {style: {marginTop:70}}, 
+          React.createElement("div", {style: {marginTop:170}}, 
             React.createElement("img", {src: "images/ship.png", style: {height:70,marginTop:50}}), 
             React.createElement("br", null), 
             React.createElement("br", null), 
